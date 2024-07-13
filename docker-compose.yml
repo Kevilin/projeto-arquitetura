@@ -1,0 +1,81 @@
+version: '2.4'
+
+services:
+    projeto-arquitetura-app:
+        container_name: projeto-arquitetura-app
+        environment:
+            - VIRTUAL_HOST=projeto-arquitetura-app.local
+            - PHP_VERSION_SHORT=8.2
+            - PHPINI_OPEN_BASEDIR=/app
+            - PHPFPM_LOG_LEVEL=debug
+            - VIRTUAL_PORT=80
+            - ALLOW_URL_FOPEN=On
+            - LOG_FILE=api.log
+            - PUBLIC_ROOT=public
+            - NGINX_POLICY=Content-Security-Policy-Report-Only
+            - NGINX_POLICY_VALUE=default-src self;
+            - STATIC_URL=/static
+            - STATIC_PATH=/app/static
+        image: ghcr.io/parisprobr/server-tools:php-8.2
+        hostname: projeto-arquitetura-app.local
+        depends_on:
+            - projeto-arquitetura-db
+            - projeto-arquitetura-nginx-proxy
+            - projeto-arquitetura-composer
+        command: bash -c 'chmod +x /root/scripts/start.sh; /root/scripts/start.sh'
+        restart: always
+        volumes:
+            - ./:/app
+            - ./storage/logs:/var/log/export
+            - ./docker/scripts/start.sh:/root/scripts/start.sh
+        env_file:
+            - ../apibcb/.env
+    
+
+    projeto-arquitetura-composer:
+        image: composer:2.5
+        network_mode: host
+        container_name: projeto-arquitetura-composer
+        user: "${UID}:${UID}"
+        command: composer install
+        volumes:
+            - ./:/app
+            - ${HOME}:${HOME}
+            - /etc/passwd:/etc/passwd:ro
+            - /etc/group:/etc/group:ro
+
+    projeto-arquitetura-db:
+        container_name: projeto-arquitetura-db
+        environment:
+            MYSQL_ROOT_PASSWORD: kK123KFTah78dAiv
+            MYSQL_DATABASE: projeto-arquitetura
+            MYSQL_USER: projeto-arquitetura
+            MYSQL_PASSWORD: kK123KFTah78dAiv
+        image: mysql:5.7
+        volumes:
+            - ./database/mysql:/var/lib/mysql
+        env_file: ./.env
+
+    projeto-arquitetura-phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        container_name: projeto-arquitetura-phpmyadmin
+        restart: on-failure
+        links:
+            - projeto-arquitetura-db
+        environment:
+            PMA_HOSTS: projeto-arquitetura-db
+            VIRTUAL_HOST: mysql.projeto-arquitetura.local
+        depends_on:
+            - projeto-arquitetura-db
+
+    projeto-arquitetura-nginx-proxy:
+        image: jwilder/nginx-proxy
+        container_name: projeto-arquitetura-nginx-proxy
+        restart: on-failure
+        privileged: true
+        ports:
+            - 80:80
+            - 443:443
+        volumes:
+            - /var/run/docker.sock:/tmp/docker.sock:ro
+        mem_limit: 128M
