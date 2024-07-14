@@ -19,8 +19,12 @@ versionado dado que este projeto é destinado a estudos
 ## Iniciando aplicação
 docker-compose up -d
 
-## Acessando
-projeto-arquitetura.local/api
-
 ## Endpoints
 
+http://projeto-arquitetura.local/api/addProduct
+
+http://projeto-arquitetura.local/api/getProduct/{id}
+
+## Collection Postman
+
+[projeto-arquitetura.postman_collection.json](https://github.com/Kevilin/projeto-arquitetura/blob/main/projeto-arquitetura.postman_collection.json)
