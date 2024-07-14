@@ -1,7 +1,6 @@
 <?php
 
-use App\Http\Controllers\AjusteDePrecoController;
-use App\Http\Controllers\IndiceController;
+use App\Http\Controllers\DataController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,7 +18,5 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('/getIndiceMeses/{indice}', [IndiceController::class, 'getIndiceMeses']);
-Route::get('/getIndicePeriodo/{indice}', [IndiceController::class, 'getIndicePeriodo']);
-Route::get('/ajusteDePrecoPeriodo/{indice}/{preco}', [AjusteDePrecoController::class, 'ajusteDePrecoPeriodo']);
-
+Route::post('/addProduct', [DataController::class, 'addProduct']);
+Route::get('/getProduct/{id}', [DataController::class, 'getProduct']);

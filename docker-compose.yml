@@ -4,7 +4,7 @@ services:
     projeto-arquitetura-app:
         container_name: projeto-arquitetura-app
         environment:
-            - VIRTUAL_HOST=projeto-arquitetura-app.local
+            - VIRTUAL_HOST=projeto-arquitetura.local
             - PHP_VERSION_SHORT=8.2
             - PHPINI_OPEN_BASEDIR=/app
             - PHPFPM_LOG_LEVEL=debug
@@ -16,8 +16,12 @@ services:
             - NGINX_POLICY_VALUE=default-src self;
             - STATIC_URL=/static
             - STATIC_PATH=/app/static
+            - DB_HOST=projeto-arquitetura-db
+            - DB_DATABASE=projeto-arquitetura
+            - DB_USERNAME=projeto-arquitetura
+            - DB_PASSWORD=projeto-arquitetura
         image: ghcr.io/parisprobr/server-tools:php-8.2
-        hostname: projeto-arquitetura-app.local
+        hostname: projeto-arquitetura.local
         depends_on:
             - projeto-arquitetura-db
             - projeto-arquitetura-nginx-proxy
@@ -29,8 +33,7 @@ services:
             - ./storage/logs:/var/log/export
             - ./docker/scripts/start.sh:/root/scripts/start.sh
         env_file:
-            - ../apibcb/.env
-    
+            - ./.env
 
     projeto-arquitetura-composer:
         image: composer:2.5
@@ -47,10 +50,10 @@ services:
     projeto-arquitetura-db:
         container_name: projeto-arquitetura-db
         environment:
-            MYSQL_ROOT_PASSWORD: kK123KFTah78dAiv
+            MYSQL_ROOT_PASSWORD: projeto-arquitetura
             MYSQL_DATABASE: projeto-arquitetura
             MYSQL_USER: projeto-arquitetura
-            MYSQL_PASSWORD: kK123KFTah78dAiv
+            MYSQL_PASSWORD: projeto-arquitetura
         image: mysql:5.7
         volumes:
             - ./database/mysql:/var/lib/mysql

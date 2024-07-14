@@ -1,0 +1,61 @@
+{
+	"info": {
+		"_postman_id": "7409c8d2-d930-4b6b-abc3-8c3ee70ad7de",
+		"name": "projeto-arquitetura",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26012365",
+		"_collection_link": "https://integracoestime2022.postman.co/workspace/Microservi%C3%A7os-CANAIS~a7eaf1ad-e5ed-4f3a-a4dc-594a1af443f3/collection/26012365-7409c8d2-d930-4b6b-abc3-8c3ee70ad7de?action=share&source=collection_link&creator=26012365"
+	},
+	"item": [
+		{
+			"name": "http://projeto-arquitetura.local/api/addProduct",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"produto teste\",\n    \"code\": \"123\",\n    \"unit\": \"10\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://projeto-arquitetura.local/api/addProduct",
+					"protocol": "http",
+					"host": [
+						"projeto-arquitetura",
+						"local"
+					],
+					"path": [
+						"api",
+						"addProduct"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://projeto-arquitetura.local/api/getProduct/3",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://projeto-arquitetura.local/api/getProduct/3",
+					"protocol": "http",
+					"host": [
+						"projeto-arquitetura",
+						"local"
+					],
+					"path": [
+						"api",
+						"getProduct",
+						"3"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

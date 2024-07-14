@@ -8,10 +8,6 @@ while [ ! -f /app/vendor/autoload.php ]; do
     sleep 2;
 done
 
-while [ ! -d /app/database/mysql/apibcb ]; do
-    echo "Aguardando install do Mysql"
-    sleep 2;
-done
 
 #Para ter certeza que o mysql terminou de instalar
 sleep 3;
