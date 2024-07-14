@@ -8,13 +8,13 @@
 	},
 	"item": [
 		{
-			"name": "http://projeto-arquitetura.local/api/addProduct",
+			"name": "http://projeto-arquitetura.local/api/product/add",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\": \"produto teste\",\n    \"code\": \"123\",\n    \"unit\": \"10\"\n}",
+					"raw": "{\n    \"name\": \"produto teste\",\n    \"code\": \"6667\",\n    \"unit\": \"10\",\n    \"category\": \"categoria1\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -22,7 +22,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://projeto-arquitetura.local/api/addProduct",
+					"raw": "http://projeto-arquitetura.local/api/product/add",
 					"protocol": "http",
 					"host": [
 						"projeto-arquitetura",
@@ -30,19 +30,20 @@
 					],
 					"path": [
 						"api",
-						"addProduct"
+						"product",
+						"add"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "http://projeto-arquitetura.local/api/getProduct/3",
+			"name": "http://projeto-arquitetura.local/api/product/3",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://projeto-arquitetura.local/api/getProduct/3",
+					"raw": "http://projeto-arquitetura.local/api/product/id/3",
 					"protocol": "http",
 					"host": [
 						"projeto-arquitetura",
@@ -50,8 +51,52 @@
 					],
 					"path": [
 						"api",
-						"getProduct",
+						"product",
+						"id",
 						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://projeto-arquitetura.local/api/product/category/categoria2",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://projeto-arquitetura.local/api/product/category/categoria2",
+					"protocol": "http",
+					"host": [
+						"projeto-arquitetura",
+						"local"
+					],
+					"path": [
+						"api",
+						"product",
+						"category",
+						"categoria2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://projeto-arquitetura.local/api/product/all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://projeto-arquitetura.local/api/product/all",
+					"protocol": "http",
+					"host": [
+						"projeto-arquitetura",
+						"local"
+					],
+					"path": [
+						"api",
+						"product",
+						"all"
 					]
 				}
 			},

@@ -15,6 +15,7 @@ class Product extends Model
         'id',
         'idPipedrive',
         'name',
+        'category',
         'code',
         'unit',
         'created_at',

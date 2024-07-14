@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('idPipedrive');
             $table->string('name');
+            $table->integer('category');
             $table->string('code')->unique();
             $table->string('unit');
             $table->timestamps();
